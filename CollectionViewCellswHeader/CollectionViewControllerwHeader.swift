@@ -8,7 +8,7 @@
 import UIKit
 
 
-class CollectionViewControllerwHeader: UICollectionViewController, UICollectionViewDelegateFlowLayout{
+class CollectionViewControllerwHeader: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     fileprivate let myCellId = "mycell"
     fileprivate let myheaderID = "myheader"

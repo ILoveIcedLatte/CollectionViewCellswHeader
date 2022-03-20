@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         self.window = UIWindow(windowScene: windowScene)
-        let vc = CollectionViewControllerwHeader(collectionViewLayout: UICollectionViewFlowLayout())
+        let vc = CollectionViewControllerwHeader(collectionViewLayout: HeaderLayout())
         let rootVC = UINavigationController(rootViewController: vc)
         self.window?.rootViewController = rootVC
         self.window?.makeKeyAndVisible()
