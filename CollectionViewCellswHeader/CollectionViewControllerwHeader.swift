@@ -38,6 +38,19 @@ class CollectionViewControllerwHeader: UICollectionViewController, UICollectionV
         collectionView.register(HeaderSection.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: myheaderID)
     }
     
+    //detect the whether scroll or not
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let contentOffsetY = scrollView.contentOffset.y
+        if contentOffsetY > 0 {
+            
+            headerViewSection?.animator.fractionComplete = 0
+            return
+        }
+        
+        //abs -> Returns the absolute value of the given number
+        headerViewSection?.animator.fractionComplete = abs(contentOffsetY) / 100
+    }
+    
     
     fileprivate func setupCollectionViewLayout() {
         //layout customization
@@ -52,13 +65,17 @@ class CollectionViewControllerwHeader: UICollectionViewController, UICollectionV
         }
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
+    var headerViewSection: HeaderSection?
     
     //oluşturduğumuz header view un ekranda görünebilmesi için override funclar düzenlenmeli
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: myheaderID, for: indexPath)
+        headerViewSection = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: myheaderID, for: indexPath) as? HeaderSection
         
-        return headerView
+        return headerViewSection!
     }
     
     //create size for headersection
